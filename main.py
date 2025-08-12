@@ -15,15 +15,31 @@ for index, row in df.iterrows():
     pdf.cell(w=0, h=12, txt=row["Topic"], align="L", ln=1, border=0)
     pdf.line(10, 21, 200, 21)
 
-    #set footer
-    pdf.ln(265)
+    ln = 10
+    y = 31
+    for i in range(1,27):
+        pdf.ln(10)
+        pdf.line(10, y, 200, y)
+        ln = ln + 10
+        y = y + 10
+    #set footer for parent page
+    pdf.ln(2)
     pdf.set_font(family="Times", style="I", size=12)
     pdf.set_text_color(180, 180, 180)
     pdf.cell(w=0, h=12, txt=row["Topic"], align="R", ln=1, border=0)
 
+
     for i in range(row["Pages"] - 1):
+        #set footer to child pages
         pdf.add_page()
-        pdf.ln(277)
+        ln = 10
+        y = 21
+        for i in range(1, 28):
+            pdf.ln(10)
+            pdf.line(10, y, 200, y)
+            ln = ln + 10
+            y = y + 10
+        pdf.ln(2)
         pdf.set_font(family="Times", style="I", size=12)
         pdf.set_text_color(180, 180, 180)
         pdf.cell(w=0, h=12, txt=row["Topic"], align="R", ln=1, border=0)
